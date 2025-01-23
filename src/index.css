@@ -1,0 +1,37 @@
+body{
+    font-size: xx-large;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: blueviolet;
+}
+
+h1{
+    background-color: aqua;
+}
+
+#task{
+    border-radius: 5px;
+}
+
+button{
+    border-radius: 5px;
+    background-color: aquamarine;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: 0.3s;
+}
+
+button:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+ul{
+    margin-right: 5%;
+    text-align: center;
+    list-style-type: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.completed{
+    text-decoration: line-through;
+}

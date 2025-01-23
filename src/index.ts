@@ -1,11 +1,45 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import{v4 as uuidV4} from "uuid"
+console.log(uuidV4())
 
-import confetti from 'canvas-confetti';
+import './index.css'
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+type Task={
+    id:string
+    name:string
+    completed:boolean
+    date:Date
+}
+const tasks=document.querySelector<HTMLUListElement>("#tasks")
+const input=document.querySelector<HTMLInputElement>("#task")
+const form=document.querySelector<HTMLFormElement>("#form")
+
+form?.addEventListener("submit", e=>{
+    e.preventDefault()
+
+    if(input?.value=="" ||input?.value==null) return
+
+    const newTask={
+        id:uuidV4(),
+        name:input.value,
+        completed:false,
+        date:new Date(),
+    }
+    createTask(newTask)
+})
+
+function createTask(task: Task){
+    const element=document.createElement("Li")
+    const label=document.createElement("label")
+    const checkbox=document.createElement("input")
+    checkbox.type="checkbox"
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+            label.classList.add("completed"); // Add the class if checked
+        } else {
+            label.classList.remove("completed"); // Remove the class if unchecked
+        }
+    })
+    label.append(checkbox, task.name)
+    element.append(label)
+    tasks?.append(element)
+}
